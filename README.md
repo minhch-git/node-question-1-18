@@ -33,7 +33,7 @@ yarn install
 Set the environment variables:
 
 ```bash
-cp sh/env.example.sh sh/env.sh
+cp .env.example .env
 
 # open .env and modify the environment variables (if needed)
 ```
