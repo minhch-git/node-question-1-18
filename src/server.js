@@ -28,7 +28,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 // Dev logging middleware
-if (process.env.NODE_ENV === ' development') {
+if (config.env === 'development') {
   app.use(morgan('dev'))
 }
 // Sanitize data
