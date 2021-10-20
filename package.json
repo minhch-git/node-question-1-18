@@ -1,8 +1,14 @@
 {
-  "name": "my_node_boilerplate",
+  "name": "create-nodejs-express-es6-app",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Create a Node.js app for building production-ready RESTful APIs using Express, by running one command",
+  "main": "src/server.js",
   "license": "MIT",
+  "repository": "https://github.com/minhchiuit/node_express_es6_boilerplate.git",
+  "author": "Minh ChiuCam <minhchiu.it@gmail.com>",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "start": "yarn run build && node ./build/src/server.js",
     "start:dev": "nodemon --exec babel-node ./src/server.js",
