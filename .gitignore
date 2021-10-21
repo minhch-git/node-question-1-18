@@ -104,7 +104,7 @@ dist
 .tern-port
 
 # Environment
-sh/
+sh/env.example.sh
 .env
 
 # language

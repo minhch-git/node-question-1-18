@@ -1,12 +1,32 @@
 import express from 'express'
-import userRoute from './user.route'
+import dangKyCungCapRoute from './dang-ky-cung-cap.route'
+import dongXeRoute from './dong-xe.route'
+import nhaCungCapRoute from './nha-cung-cap.route'
+import loaiDichVuRoute from './loai-dich-vu.route'
+import mucPhiRoute from './muc-phi.route'
 
 const router = express.Router()
 
 const defaultRoutes = [
   {
-    path: '/users',
-    route: userRoute,
+    path: '/muc-phi',
+    route: mucPhiRoute,
+  },
+  {
+    path: '/loai-dich-vu',
+    route: loaiDichVuRoute,
+  },
+  {
+    path: '/nha-cung-cap',
+    route: nhaCungCapRoute,
+  },
+  {
+    path: '/dong-xe',
+    route: dongXeRoute,
+  },
+  {
+    path: '/dang-ky-cung-cap',
+    route: dangKyCungCapRoute,
   },
 ]
 
