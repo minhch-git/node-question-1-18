@@ -350,7 +350,8 @@ The app also contains 2 custom mongoose plugins that you can attach to any mongo
 
 ```javascript
 import mongoose from 'mongoose'
-import { toJSON, paginate } from './plugins'
+
+import paginate from './plugins/paginate'
 
 const userSchema = mongoose.Schema(
   {

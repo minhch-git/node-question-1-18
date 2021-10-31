@@ -1,6 +1,6 @@
 # Config app environment variable
 export NODE_ENV=development
-export PORT=8888
+export PORT=9999
 
 # URL of the Mongo DB
 export MONGODB_URI="mongodb://127.0.0.1:27017/my_node_boilerplate"
