@@ -27,3 +27,6 @@ export SMTP_PORT=587
 export SMTP_USERNAME=email-server-username
 export SMTP_PASSWORD=email-server-password
 export FROM_EMAIL=support@yourapp.com
+
+# Token github
+# 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
