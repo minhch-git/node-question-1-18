@@ -25,13 +25,6 @@ cau 16:  - Cho biết thông tin về các sinh viên thực tập tại quê nh
 cau 17:  - Hãy cho biết thông tin về những sinh viên chưa có điểm thực tập
 cau 18:  - Đưa ra danh sách gồm mã số, họ tên các sinh viên có điểm thực tập bằng 0
 
-cau 11:  - Cho biết mã số, họ tên, tên khoa của các giảng viên hướng dẫn từ 3 sinh viên trở lên.  ===========> Pending
-cau 13:  - Cho biết mã số và tên các đề tài có nhiều hơn 2 sinh viên tham gia thực tập ===========> Pending
-
-
-
-
-
 
 
 
