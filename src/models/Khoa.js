@@ -7,6 +7,7 @@ const khoaSchema = new Schema(
     tenKhoa: {
       type: String,
       trim: true,
+      lowercase: true,
       required: true,
     },
     dienThoai: {
