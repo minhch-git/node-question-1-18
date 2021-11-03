@@ -105,6 +105,7 @@ dist
 
 # Environment
 sh/env.example.sh
+sh/env.sh
 .env
 
 # language
