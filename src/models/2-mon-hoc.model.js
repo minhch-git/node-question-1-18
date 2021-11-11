@@ -1,20 +1,17 @@
 import mongoose, { Schema } from 'mongoose'
 import paginate from './plugins/paginate'
 
-const deTaiSchema = new Schema(
+const monHoc2Schema = new Schema(
   {
-    tenDT: {
+    tenMH: {
       type: String,
       trim: true,
+      lowercase: true,
       required: true,
     },
-    kinhPhi: {
+    soTiet: {
       type: Number,
       required: true,
-    },
-    noiThucTap: {
-      type: String,
-      trim: true,
     },
   },
   {
@@ -32,12 +29,12 @@ const deTaiSchema = new Schema(
 )
 
 // add plugin that converts mongoose to json
-// deTaiSchema.plugin(toJSON)
-deTaiSchema.plugin(paginate)
+// monHoc2Schema.plugin(toJSON)
+monHoc2Schema.plugin(paginate)
 
 /**
- * @typedef DeTai
+ * @typedef MonHoc2
  */
-const DeTai = mongoose.model('DeTai', deTaiSchema)
+const MonHoc2 = mongoose.model('MonHoc2', monHoc2Schema)
 
-export default DeTai
+export default MonHoc2

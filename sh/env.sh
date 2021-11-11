@@ -1,9 +1,10 @@
 # Config app environment variable
 export NODE_ENV=development
-export PORT=9999
+export PORT=8888
 
 # URL of the Mongo DB
 export MONGODB_URI="mongodb://127.0.0.1:27017/node-question-1-18"
+# export MONGODB_URI="mongodb://127.0.0.1:27017/node-question-1-25"
 # export MONGODB_URI="mongodb+srv://<username>:<password>@cluster0.wqu70.mongodb.net/<database_name>?retryWrites=true&w=majority"
 
 

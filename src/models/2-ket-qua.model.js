@@ -1,21 +1,19 @@
 import mongoose, { Schema } from 'mongoose'
 import paginate from './plugins/paginate'
 
-const deTaiSchema = new Schema(
+const ketQua2Schema = new Schema(
   {
-    tenDT: {
-      type: String,
-      trim: true,
+    maSV: {
+      type: Schema.Types.ObjectId,
+      ref: 'SinhVien2',
       required: true,
     },
-    kinhPhi: {
-      type: Number,
+    maMH: {
+      type: Schema.Types.ObjectId,
+      ref: 'MonHoc2',
       required: true,
     },
-    noiThucTap: {
-      type: String,
-      trim: true,
-    },
+    diemThi: Number,
   },
   {
     timestamps: true,
@@ -32,12 +30,12 @@ const deTaiSchema = new Schema(
 )
 
 // add plugin that converts mongoose to json
-// deTaiSchema.plugin(toJSON)
-deTaiSchema.plugin(paginate)
+// ketQua2Schema.plugin(toJSON)
+ketQua2Schema.plugin(paginate)
 
 /**
- * @typedef DeTai
+ * @typedef KetQua2
  */
-const DeTai = mongoose.model('DeTai', deTaiSchema)
+const KetQua2 = mongoose.model('KetQua2', ketQua2Schema)
 
-export default DeTai
+export default KetQua2

@@ -1,18 +1,28 @@
 import mongoose, { Schema } from 'mongoose'
 import paginate from './plugins/paginate'
 
-const deTaiSchema = new Schema(
+const sinhVien2Schema = new Schema(
   {
-    tenDT: {
+    hoTen: {
       type: String,
       trim: true,
       required: true,
     },
-    kinhPhi: {
+    gioiTinh: {
+      type: Boolean,
+      trim: true,
+      default: true,
+    },
+    hocBong: {
       type: Number,
+    },
+    ngaySinh: Date,
+    maLop: {
+      type: Schema.Types.ObjectId,
+      ref: 'Lop2',
       required: true,
     },
-    noiThucTap: {
+    tinh: {
       type: String,
       trim: true,
     },
@@ -20,24 +30,23 @@ const deTaiSchema = new Schema(
   {
     timestamps: true,
     toJSON: {
+      virtual: true,
       transform(doc, ret) {
         ret.id = ret._id
         delete ret._id
         delete ret.__v
-        delete ret.createdAt
-        delete ret.updatedAt
       },
     },
   }
 )
 
 // add plugin that converts mongoose to json
-// deTaiSchema.plugin(toJSON)
-deTaiSchema.plugin(paginate)
+// sinhVien2Schema.plugin(toJSON)
+sinhVien2Schema.plugin(paginate)
 
 /**
- * @typedef DeTai
+ * @typedef SinhVien2
  */
-const DeTai = mongoose.model('DeTai', deTaiSchema)
+const SinhVien2 = mongoose.model('SinhVien2', sinhVien2Schema)
 
-export default DeTai
+export default SinhVien2

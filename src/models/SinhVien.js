@@ -1,5 +1,4 @@
 import mongoose, { Schema } from 'mongoose'
-
 import paginate from './plugins/paginate'
 
 const sinhVienSchema = new Schema(

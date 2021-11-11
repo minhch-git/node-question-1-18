@@ -1,6 +1,6 @@
 import pick from 'lodash/pick'
 import catchAsync from '../utils/catchAsync'
-import baiTapService from '../services/bai-tap.service'
+import baiTapService from '../services/bai-tap-1.service'
 
 // cau 1:  - Đưa ra thông tin gồm mã số, họ tên và tên khoa của tất cả các giảng viên
 const getCau1 = catchAsync(async (req, res, next) => {
