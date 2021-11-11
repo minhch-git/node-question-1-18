@@ -77,18 +77,10 @@ const getCau5 = async () => {
 
 // cau 6:  - Cho biết thông tin về sinh viên không tham gia thực tập (tìm những sinh viên không có trong model: HuongDan)
 const getCau6 = async () => {
-  const maSVs = await HuongDan.find().select('-_id maSV')
-
-  // Get unique key and change maSV => _id
-  const uniqueMaSVs = maSVs.reduce((prev, curr) => {
-    return prev.some(_id => _id === curr.maSV)
-      ? prev
-      : [...prev, curr.maSV.toString()]
-  }, [])
-  // console.log(uniqueMaSVs)
+  const maSVs = await HuongDan.distinct('maSV')
   const options = {
     _id: {
-      $nin: uniqueMaSVs,
+      $nin: maSVs,
     },
   }
 
@@ -173,18 +165,11 @@ const getCau9 = async () => {
 // cau 10:  - Cho biết tên đề tài không có sinh viên nào thực tập
 const getCau10 = async () => {
   // HuongDan => DeTai
-  const maDTs = await HuongDan.find().select('-_id maDT')
-
-  // Get unique key and change maDT => id
-  const uniqueMaDTs = maDTs.reduce((prev, curr) => {
-    return prev.some(_id => _id === curr.maDT)
-      ? prev
-      : [...prev, curr.maDT.toString()]
-  }, [])
+  const maDTs = await HuongDan.distinct('maDT')
 
   const options = {
     _id: {
-      $nin: uniqueMaDTs,
+      $nin: maDTs,
     },
   }
   return DeTai.find(options)
@@ -195,37 +180,55 @@ const getCau10 = async () => {
 //      +maGV và +maSV có 3 lần trong bang HuongDan
 
 const getCau11 = async () => {
+  // group
+  const group = {
+    _id: '$maGV',
+    count: { $sum: 1 },
+  }
+
+  // match
+  const match = { count: { $gt: 3 } }
+
   // Reference model: "giangviens"
-  const lookupOptions = {
+  const lookupGiangVien = {
     from: 'giangviens',
     localField: '_id',
     foreignField: '_id',
     as: 'giangviens',
+  }
+  const unwindGiangVien = {
+    path: '$giangviens',
+    preserveNullAndEmptyArrays: true,
+  }
+
+  // Reference model: "Khoas" from 'giangviens'
+  const lookupKhoa = {
+    from: 'Khoas',
+    localField: 'giangviens.maKhoa',
+    foreignField: '_id',
+    as: 'khoas',
+  }
+  const unwindKhoa = {
+    path: '$khoas',
+    preserveNullAndEmptyArrays: true,
   }
 
   // Select fields
   const projectOptions = {
     _id: '$_id',
     count: '$count',
-    giangviens: '$giangviens',
+    hoTenGV: '$giangviens.hoTenGV',
+    tenKhoa: '$khoas.tenKhoa',
   }
 
   const giangViens = await HuongDan.aggregate([
-    {
-      $group: {
-        _id: '$maGV',
-        count: { $sum: 1 },
-      },
-    },
-    {
-      $match: { count: { $gt: 3 } },
-    },
-    {
-      $lookup: lookupOptions,
-    },
-    {
-      $project: projectOptions,
-    },
+    { $group: group },
+    { $match: match },
+    { $lookup: lookupGiangVien },
+    { $unwind: unwindGiangVien },
+    { $lookup: lookupKhoa },
+    { $unwind: unwindKhoa },
+    { $project: projectOptions },
   ]).catch(error => {
     createHttpError.NotFound('Not found')
     console.log(error)
@@ -331,14 +334,7 @@ const getCau15 = async () => {
 const getCau16 = async () => {
   // SinhVien[queQuan] = deTai[noiThucTap]
   // => HuongDan[]
-  const deTais = await DeTai.find({}).select('noiThucTap -_id')
-
-  // Get unique deTais
-  const noiThucTaps = deTais.reduce((prev, curr) => {
-    return prev.some(queQuan => queQuan === curr.noiThucTap)
-      ? prev
-      : [...prev, curr.noiThucTap]
-  }, [])
+  const noiThucTaps = await DeTai.distinct('noiThucTap')
 
   const options = {
     queQuan: {

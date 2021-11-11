@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import baiTapCtrl from '../../controllers/bai-tap.controller'
+import baiTapCtrl from '../../controllers/bai-tap-1.controller'
 
 const router = new Router()
 
